@@ -1,0 +1,16 @@
+  body {
+                background: #fff;
+                height: max-content;
+                font-family: 'Khand', sans-serif;
+
+            }
+            button{
+                background-color: #32E0C4!important;
+                border-color: #32E0C4!important;
+
+            } 
+                .bg {
+                background-image: url(../Imagenes/fondo2.jpg);
+                background-position: center center;
+            }
+      
