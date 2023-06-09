@@ -160,6 +160,7 @@
                                 </div>
                             </form>
                             <script>
+                            console.log("ga");
                                 function mostrarCamposAdicionales() {
                                     var tipoPago = document.getElementById("floatingSelect").value;
                                     var camposAdicionales = document.getElementById("camposAdicionales");
