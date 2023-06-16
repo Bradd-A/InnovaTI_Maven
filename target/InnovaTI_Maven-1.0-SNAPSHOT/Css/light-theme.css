@@ -1,0 +1,45 @@
+/* Light Theme Styles */
+aside {
+    background-color: #3A4CBF;
+    color: #222222;
+}
+
+aside #sidebar {
+    background-color: #3A4CBF;
+}
+
+aside #sidebar p {
+    color: #222222;
+}
+
+aside .nav-link,
+aside .dropdown-btn {
+    color: #222222;
+}
+
+aside .dropdown-container a {
+    color: #222222 !important;
+}
+
+aside #user {
+    background-color: #383FDF;
+    color: #F5F5F5;
+}
+
+aside #user a {
+    color: #222222 !important;
+}
+
+aside #user div {
+    color: #F5F5F5;
+}
+
+aside #user div:hover {
+    color: #F5F5F5;
+}
+
+aside .nav-item:nth-child(2) a,
+aside .nav-item:last-child a {
+    color: #222222 !important;
+    background-color: #7B7C93;
+}

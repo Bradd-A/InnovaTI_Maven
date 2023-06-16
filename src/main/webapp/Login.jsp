@@ -13,13 +13,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300&display=swap" rel="stylesheet">        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-        <title>Inicio de sesión</title>
+        <title>Inicio de sesión </title>
         <link rel="icon" href="Imagenes/logo2.ico" />
         <script type="text/javascript">
                 history.pushState(null, null, location.href);
                 history.back();
                 history.forward();
                 window.onpopstate = function () { history.go(1); };
+                
         </script>
     <body style="font-family: 'Khand', sans-serif;">
         <br>

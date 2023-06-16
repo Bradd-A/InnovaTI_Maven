@@ -143,6 +143,16 @@
                                                 <tr>
                                                     <td colspan="2">Metodo de pago:&nbsp;<%=eb.getMETODO_PAGO()%></td>
                                                 </tr>
+                                                <% 
+                                                    if(eb.getMETODO_PAGO().equalsIgnoreCase("efectivo")){
+                                                %>
+                                                <tr>
+                                                    <td colspan="2">Efectivo:&nbsp;<%=eb.getEFECTIVO()%></td>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+
                                                 <tr>
                                                     <td colspan="2">Direccion:&nbsp;<%=eb.getDIRECCION_ENVIO()%></td>
                                                 </tr>

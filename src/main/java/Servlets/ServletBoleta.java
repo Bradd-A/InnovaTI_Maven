@@ -58,7 +58,7 @@ public class ServletBoleta extends HttpServlet {
                 ArrayList<BoletaBeans> lista = new ArrayList<BoletaBeans>();
                 while (rs.next()) {
                     BoletaBeans bb = new BoletaBeans(rs.getInt(1), rs.getString(2),
-                            rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                            rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
                     lista.add(bb);
                 }
                 request.setAttribute("lista", lista);
@@ -76,7 +76,7 @@ public class ServletBoleta extends HttpServlet {
                 ArrayList<BoletaBeans> lista = new ArrayList<BoletaBeans>();
                 while (rs.next()) {
                     BoletaBeans bb = new BoletaBeans(rs.getInt(1), rs.getString(2),
-                            rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                            rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
                     lista.add(bb);
                 }
                 request.setAttribute("lista3", lista);
@@ -105,7 +105,7 @@ public class ServletBoleta extends HttpServlet {
                 ArrayList<BoletaBeans> lista = new ArrayList<BoletaBeans>();
                 while (rs.next()) {
                     BoletaBeans bb = new BoletaBeans(rs.getInt(1), rs.getString(2),
-                            rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                            rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
                     lista.add(bb);
                 }
                 request.setAttribute("lista3", lista);
@@ -136,12 +136,13 @@ public class ServletBoleta extends HttpServlet {
                 String modo = request.getParameter("txtTipo");
                 String direc = request.getParameter("txtDirec");
                 String refe = request.getParameter("txtRefe");
+                int efectivo = Integer.parseInt(request.getParameter("txtEfectivo")); 
                 String NOM_CLIENTE= "Select ID_CLIENTE from CLIENTE where NOM_CLIENTE='"+(String)sesionOk.getAttribute("nombre")+"'";
                 PreparedStatement ID_CLIENTE= ConexionDB.getConexion().prepareStatement(NOM_CLIENTE);
                 ResultSet IDCL= ID_CLIENTE.executeQuery();
                 IDCL.next();
                 String nombre = IDCL.getString(1);
-                String BOLETA_DATOS="insert into boleta values(null,'"+LocalDateTime.now().toString()+"','"+nombre+"','"+direc+"','"+refe+"','"+modo+"')";
+                String BOLETA_DATOS="insert into boleta values(null,'"+LocalDateTime.now().toString()+"','"+nombre+"','"+direc+"','"+refe+"','"+modo+"','"+efectivo+"')";
                 PreparedStatement BOLETA= ConexionDB.getConexion().prepareStatement(BOLETA_DATOS);
                 BOLETA.executeUpdate();
                 String CONSULTA_BOLETA= "Select ID_BOLETA from BOLETA where DIRECCION_ENTREGA='"+direc+"'";
@@ -172,7 +173,8 @@ public class ServletBoleta extends HttpServlet {
                     PreparedStatement ACTU_STOCK=ConexionDB.getConexion().prepareStatement(ACTU_STOCKO);
                     ACTU_STOCK.executeUpdate();
                 }
-                request.getRequestDispatcher("ServletBoleta?op=listar2").forward(request, response);
+                    request.getRequestDispatcher("ServletBoleta?op=listar2").forward(request, response);
+                
             } catch (Exception e) {
                 System.out.println("Error: " + e);
             }

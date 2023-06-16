@@ -175,7 +175,7 @@ if (jsonObject.has("detalles")) {
                 ResultSet IDCL= ID_CLIENTE.executeQuery();
                 IDCL.next();
                 String nombre = IDCL.getString(1);
-                String BOLETA_DATOS="insert into boleta values(null,'"+fechaFormateada+"','"+nombre+"','"+direc+"','"+refe+"','"+modo+"')";
+                String BOLETA_DATOS="insert into boleta values(null,'"+fechaFormateada+"','"+nombre+"','"+direc+"','"+refe+"','"+modo+"','"+0+"')";
                 PreparedStatement BOLETA= ConexionDB.getConexion().prepareStatement(BOLETA_DATOS);
                 BOLETA.executeUpdate();
                 String CONSULTA_BOLETA= "Select ID_BOLETA from BOLETA where DIRECCION_ENTREGA='"+direc+"' AND ID_CLIENTE='"+nombre+"'";

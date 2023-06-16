@@ -7,14 +7,16 @@ public class BoletaBeans {
     private String DIRECCION_ENVIO;
     private String REFERENCIA;
     private String METODO_PAGO;
+    private int EFECTIVO;
 
-    public BoletaBeans(int ID_BOLETA, String FECHA_COMPRA, int ID_CLIENTE, String DIRECCION_ENVIO, String REFERENCIA, String METODO_PAGO) {
+    public BoletaBeans(int ID_BOLETA, String FECHA_COMPRA, int ID_CLIENTE, String DIRECCION_ENVIO, String REFERENCIA, String METODO_PAGO, int EFECTIVO) {
         this.ID_BOLETA = ID_BOLETA;
         this.FECHA_COMPRA = FECHA_COMPRA;
         this.ID_CLIENTE = ID_CLIENTE;
         this.DIRECCION_ENVIO = DIRECCION_ENVIO;
         this.REFERENCIA = REFERENCIA;
         this.METODO_PAGO = METODO_PAGO;
+        this.EFECTIVO = EFECTIVO;
     }
 
     public int getID_BOLETA() {
@@ -64,5 +66,14 @@ public class BoletaBeans {
     public void setMETODO_PAGO(String METODO_PAGO) {
         this.METODO_PAGO = METODO_PAGO;
     }
+
+    public int getEFECTIVO() {
+        return EFECTIVO;
+    }
+
+    public void setEFECTIVO(int EFECTIVO) {
+        this.EFECTIVO = EFECTIVO;
+    }
+    
     
 }

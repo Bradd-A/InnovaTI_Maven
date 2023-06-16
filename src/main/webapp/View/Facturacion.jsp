@@ -140,6 +140,10 @@
                                     </select>
 
                                     <label id="precioTotal">Precio total: <%=total %></label>
+                                    <div id = "campoEfectivo" class="form-floating mt-2" style="display: none;">
+                                        <input type="number" name="txtEfectivo" class="form-control" id="floatingInputEfectivo" placeholder="Efectivo" min="<%=total%>" required>
+                                        <label for="floatingInputEfectivo">Ingrese el monto en efectivo</label>
+                                    </div>
 
                                     <div id="camposAdicionales" style="display: none;">
                                     <div class="form-floating mt-2">
@@ -165,25 +169,31 @@
                                     var camposAdicionales = document.getElementById("camposAdicionales");
                                     var paypalBtnContainer = document.getElementById("paypal-button-container");
                                     var pagarBtn = document.getElementById("pagarBtn");
+                                    var campoEfectivo = document.getElementById("campoEfectivo");
 
                                     if (tipoPago === "Efectivo") {
                                         camposAdicionales.style.display = "block";
                                         paypalBtnContainer.style.display = "none";
                                         pagarBtn.style.display = "block";
+                                        campoEfectivo.style.display = "block";
                                     } else if (tipoPago === "Tarjeta") {
                                         camposAdicionales.style.display = "block";
                                         paypalBtnContainer.style.display = "block";
                                         pagarBtn.style.display = "none";
+                                        campoEfectivo.style.display = "none";
                                     } else {
                                         camposAdicionales.style.display = "none";
                                         paypalBtnContainer.style.display = "none";
                                         pagarBtn.style.display = "none";
+                                        campoEfectivo.style.display = "none";
                                     }
 
                                     // Otros campos adicionales según la opción seleccionada
                                 }
                             </script>
                             <script>
+                                <% double totalDolares = total/3.5;
+                                double totalDolaresR = Math.round(totalDolares * 10) / 10.0;%>
                             paypal.Buttons({
                                 style:{
                                     color: 'blue',

@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="Css/nav.css">
         <link rel="stylesheet" href="Css/script.js">
         <link rel="icon" href="Imagenes/logo2.ico" />
+        <link id="theme" rel="stylesheet" href="Css/light-theme.css">
         <script src="Css/script.js"></script>
     </head>
     <body>
@@ -101,8 +102,12 @@
                                 <li class="nav-item  " style="padding-left: 15px">
                                     <a href="Login.jsp" class="nav-link"> <i class="fas fa-user-lock"></i> Cerrar Sesión </a>
                                 </li>
+                                <li class="nav-item mt-auto">
+                                    <button id="theme-toggle" class="btn btn-primary"><i class="fas fa-adjust"></i> Cambiar Tema</button>
+                                </li>
                             </ul>
                         </div>
+                        
                     </nav>
                 </aside>
                 <main class="col px-0 flex-grow-1 p-3 pb-4">
@@ -155,4 +160,18 @@
             <%@include file="Includes/footer.jsp"%>
         </div>
     </body>
+    <script>
+    // Función para cambiar entre los temas oscuro y claro
+    function toggleTheme() {
+        var theme = document.getElementById('theme');
+        if (theme.getAttribute('href').includes('dark-theme.css')) {
+          theme.href = 'Css/light-theme.css';
+        } else {
+          theme.href = 'Css/dark-theme.css';
+        }
+      }
+
+    // Asignar el evento click al botón para cambiar el tema
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+  </script>
 </html>
