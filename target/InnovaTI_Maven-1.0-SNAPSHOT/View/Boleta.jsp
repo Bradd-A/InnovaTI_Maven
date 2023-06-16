@@ -1,3 +1,5 @@
+<%@page import="java.math.RoundingMode"%>
+<%@page import="java.math.BigDecimal"%>
 <%@page import="Beans.*"%>
 <%@page import="java.io.*,java.net.*,java.sql.*" %>
 <%@page import="java.util.ArrayList" %>
@@ -167,28 +169,55 @@
                                                     <td>Producto</td><td>Precio</td>
                                                     <td>Cantidad</td><td>Monto</td>
                                                 </tr>
+                                                
                                                 <%
-                                                    double total = 0;
+                                                    double prodDol = 0;
+                                                    float prodDolR = 0;
+                                                    double totalD = 0;
+                                                    double totalS = 0;
                                                     int i = -1;
                                                     ArrayList<CarritoBeans> lista = (ArrayList<CarritoBeans>) session.getAttribute("carrito");
                                                     if (lista != null) {
                                                         for (CarritoBeans d : lista) {
+                                                        %>
+                                                        <%
+                                                        if(eb.getMETODO_PAGO().equalsIgnoreCase("tarjeta")){
+                                                            // Redondear monto de producto a dolares
+                                                            prodDol = (d.getCant() * d.getPrecio() / 3.7);
+                                                            BigDecimal bd = new BigDecimal(Double.toString(prodDol));
+                                                            bd = bd.setScale(2, RoundingMode.HALF_UP);
+                                                            prodDolR = bd.floatValue();
+                                                        }%>
+                                                            <%
                                                             i = i + 1;
                                                 %>
                                                 <tr>
                                                     <td><%=d.getNom()%></td>
-                                                    <td><%=d.getPrecio()%></td>
+                                                    <td>S/<%=d.getPrecio()%></td>
                                                     <td><%=d.getCant()%></td>
-                                                    <td><%=d.getCant() * d.getPrecio()%></td>
+                                                    <% if(eb.getMETODO_PAGO().equalsIgnoreCase("tarjeta")){%>
+                                                    <td>$<%=prodDolR%></td>
+                                                        <%}else{%>
+                                                    <td>S/<%=d.getCant() * d.getPrecio()%></td>
+                                                    <% } %>
                                                 </tr>
+                                                
                                                 <%
-                                                            total = total + (d.getPrecio() * d.getCant());
+                                                            totalD = totalD + prodDol;
+                                                            totalS = totalS + (d.getPrecio() * d.getCant());
                                                         }
                                                     }
+                                                    BigDecimal bd = new BigDecimal(Double.toString(totalD));
+                                                    bd = bd.setScale(2, RoundingMode.HALF_UP);
+                                                    float montoEnDolaresRedondeado = bd.floatValue();
                                                 %>
                                                 <tr>
                                                     <td align="left" colspan="3">Total:&nbsp; </td>
-                                                    <td><%=total%></td>
+                                                    <% if(eb.getMETODO_PAGO().equalsIgnoreCase("tarjeta")){%>
+                                                    <td>$<%=montoEnDolaresRedondeado%></td>
+                                                    <% }else{ %>
+                                                    <td>S/<%=totalS%></td>
+                                                    <% } %>
                                                 </tr>
                                             </table>
                                         </div>

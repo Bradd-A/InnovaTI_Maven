@@ -21,6 +21,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.BufferedReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -200,10 +202,16 @@ if (jsonObject.has("detalles")) {
                     int ID_PROD=ID_PRODUCTO.getInt(1);
                     PreparedStatement DETALLE = ConexionDB.getConexion().prepareStatement(
     "insert into detalle_boleta (ID_PRODUCTO, ID_BOLETA, DET_CANTIDAD, DET_TOTAL) values (?, ?, ?, ?)");
+                    float tipoCambio = 3.7f;
+                    float montoEnSoles = (float) (carri.getPrecio() * carri.getCant());
+                    float montoEnDolares = montoEnSoles / tipoCambio;
+                    BigDecimal bd = new BigDecimal(Float.toString(montoEnDolares));
+                    bd = bd.setScale(2, RoundingMode.HALF_UP);
+                    float montoEnDolaresRedondeado = bd.floatValue();
                     DETALLE.setInt(1, ID_PROD);
                     DETALLE.setInt(2, ID_BOL);
                     DETALLE.setInt(3, carri.getCant());
-                    DETALLE.setFloat(4, (float) (carri.getPrecio() * carri.getCant()));
+                    DETALLE.setFloat(4, montoEnDolaresRedondeado);
                     DETALLE.executeUpdate();
                     int Actualizado=RESTANTE-carri.getCant();
                     String ACTU_STOCKO = "update producto set STOCK='"+Actualizado+"' where ID_PRODUCTO='"+ID_PROD+"'";

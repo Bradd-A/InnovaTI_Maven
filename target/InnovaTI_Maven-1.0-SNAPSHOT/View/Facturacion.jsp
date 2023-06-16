@@ -1,3 +1,5 @@
+<%@page import="java.math.RoundingMode"%>
+<%@page import="java.math.BigDecimal"%>
 <%@page import="Beans.*"%>
 <%@page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -141,9 +143,15 @@
 
                                     <label id="precioTotal">Precio total: <%=total %></label>
                                     <div id = "campoEfectivo" class="form-floating mt-2" style="display: none;">
-                                        <input type="number" name="txtEfectivo" class="form-control" id="floatingInputEfectivo" placeholder="Efectivo" min="<%=total%>" required>
+                                        <input type="number" name="txtEfectivo" class="form-control" id="floatingInputEfectivo" placeholder="Efectivo" min="<%=total%>" max="<%=total*2%>" required onkeydown="validarEfectivo(event, this); calcularCambio();">
                                         <label for="floatingInputEfectivo">Ingrese el monto en efectivo</label>
                                     </div>
+     
+                                        <div id="campoCambio" class="form-floating mt-2" style="display: none;">
+                                          <input type="text" name="txtCambio" class="form-control" id="floatingInputCambio" placeholder="Cambio" readonly>
+                                          <label for="floatingInputCambio">Vuelto</label>
+                                        </div>
+                                   
 
                                     <div id="camposAdicionales" style="display: none;">
                                     <div class="form-floating mt-2">
@@ -170,30 +178,59 @@
                                     var paypalBtnContainer = document.getElementById("paypal-button-container");
                                     var pagarBtn = document.getElementById("pagarBtn");
                                     var campoEfectivo = document.getElementById("campoEfectivo");
+                                    var cambioDiv = document.getElementById("campoCambio");
+                                    var efectivoInput = document.querySelector('input[name="txtEfectivo"]');
+                                    var cambioInput = document.querySelector('input[name="txtCambio"]');
 
                                     if (tipoPago === "Efectivo") {
-                                        camposAdicionales.style.display = "block";
-                                        paypalBtnContainer.style.display = "none";
-                                        pagarBtn.style.display = "block";
-                                        campoEfectivo.style.display = "block";
+                                      camposAdicionales.style.display = "block";
+                                      paypalBtnContainer.style.display = "none";
+                                      pagarBtn.style.display = "block";
+                                      campoEfectivo.style.display = "block";
+                                      cambioDiv.style.display = "block";
+                                      efectivoInput.addEventListener("input", calcularCambio);
                                     } else if (tipoPago === "Tarjeta") {
-                                        camposAdicionales.style.display = "block";
-                                        paypalBtnContainer.style.display = "block";
-                                        pagarBtn.style.display = "none";
-                                        campoEfectivo.style.display = "none";
+                                      camposAdicionales.style.display = "block";
+                                      paypalBtnContainer.style.display = "block";
+                                      pagarBtn.style.display = "none";
+                                      campoEfectivo.style.display = "none";
+                                      cambioDiv.style.display = "none";
+                                      efectivoInput.removeEventListener("input", calcularCambio);
                                     } else {
-                                        camposAdicionales.style.display = "none";
-                                        paypalBtnContainer.style.display = "none";
-                                        pagarBtn.style.display = "none";
-                                        campoEfectivo.style.display = "none";
+                                      camposAdicionales.style.display = "none";
+                                      paypalBtnContainer.style.display = "none";
+                                      pagarBtn.style.display = "none";
+                                      campoEfectivo.style.display = "none";
+                                      cambioDiv.style.display = "none";
+                                      efectivoInput.removeEventListener("input", calcularCambio);
                                     }
-
-                                    // Otros campos adicionales según la opción seleccionada
                                 }
+
+                                function calcularCambio() {
+                                  var efectivo = parseFloat(document.getElementById("floatingInputEfectivo").value);
+                                    var total = <%=total%>;
+
+                                    if (efectivo > total) {
+                                      var cambio = efectivo - total;
+                                      document.getElementById("campoCambio").style.display = "block";
+                                      document.getElementById("floatingInputCambio").value = cambio.toFixed(2);
+                                    } else {
+                                      document.getElementById("campoCambio").style.display = "none";
+                                    }
+                                }
+                                function validarEfectivo(event, input) {
+                                    if (input.value === "0" && event.key !== "Backspace") {
+                                        input.value = "";
+                                    }
+                                }
+
                             </script>
                             <script>
-                                <% double totalDolares = total/3.5;
-                                double totalDolaresR = Math.round(totalDolares * 10) / 10.0;%>
+                                <% double totalDolares = total/3.7;
+                                BigDecimal bd = new BigDecimal(Double.toString(totalDolares));
+                                bd = bd.setScale(2, RoundingMode.HALF_UP);
+                                double totalDolaresR = bd.doubleValue();
+                                %>
                             paypal.Buttons({
                                 style:{
                                     color: 'blue',
@@ -212,7 +249,7 @@
                                     return actions.order.create({
                                         purchase_units:[{
                                             amount: {
-                                                value: <%=total%>
+                                                value: <%=totalDolaresR%>
                                             }
                                         }]
                                     });
