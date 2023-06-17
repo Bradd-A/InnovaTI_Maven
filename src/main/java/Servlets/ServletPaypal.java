@@ -180,7 +180,7 @@ if (jsonObject.has("detalles")) {
                 String BOLETA_DATOS="insert into boleta values(null,'"+fechaFormateada+"','"+nombre+"','"+direc+"','"+refe+"','"+modo+"','"+0+"')";
                 PreparedStatement BOLETA= ConexionDB.getConexion().prepareStatement(BOLETA_DATOS);
                 BOLETA.executeUpdate();
-                String CONSULTA_BOLETA= "Select ID_BOLETA from BOLETA where DIRECCION_ENTREGA='"+direc+"' AND ID_CLIENTE='"+nombre+"'";
+                String CONSULTA_BOLETA= "Select ID_BOLETA from BOLETA where DIRECCION_ENTREGA='"+direc+"' AND REFERENCIA='"+refe+"' ID_CLIENTE='"+nombre+"' AND METODO_PAGO='"+modo+"'";
                 PreparedStatement ID_BOLETA= ConexionDB.getConexion().prepareStatement(CONSULTA_BOLETA);
                 ResultSet IBCL= ID_BOLETA.executeQuery();
                 IBCL.next();
