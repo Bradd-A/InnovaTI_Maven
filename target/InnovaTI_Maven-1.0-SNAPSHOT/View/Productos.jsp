@@ -95,8 +95,10 @@
                                 <li class="nav-item  " style="padding-left: 15px">
                                     <a href="Login.jsp" class="nav-link"> <i class="fas fa-user-lock"></i> Cerrar Sesión </a>
                                 </li>
+                                
                             </ul>
                         </div>
+                       
                     </nav>
                 </aside>
                 <main class="col px-0 flex-grow-1 p pb-4">
@@ -172,4 +174,5 @@
             <%@include file="../Includes/footer.jsp"%>
         </div> 
     </body>
+   
 </html>
