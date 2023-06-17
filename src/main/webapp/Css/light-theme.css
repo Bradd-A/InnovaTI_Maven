@@ -1,45 +1,122 @@
-/* Light Theme Styles */
+body{
+    color: red;
+}
+nav,
 aside {
-    background-color: #3A4CBF;
-    color: #222222;
+    background-color: #12175E;
 }
-
-aside #sidebar {
-    background-color: #3A4CBF;
+ul {
+    padding: 0px !important;
 }
-
-aside #sidebar p {
-    color: #222222;
-}
-
-aside .nav-link,
-aside .dropdown-btn {
-    color: #222222;
-}
-
-aside .dropdown-container a {
-    color: #222222 !important;
-}
-
-aside #user {
-    background-color: #383FDF;
-    color: #F5F5F5;
-}
-
-aside #user a {
-    color: #222222 !important;
-}
-
-aside #user div {
-    color: #F5F5F5;
-}
-
-aside #user div:hover {
-    color: #F5F5F5;
-}
-
-aside .nav-item:nth-child(2) a,
-aside .nav-item:last-child a {
-    color: #222222 !important;
+li:hover {
+    width: 100%;
     background-color: #7B7C93;
+}
+li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+#title {
+    font-family: 'Roboto', sans-serif;
+}
+#sidebar p {
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+}
+.navitem:active {
+    color: white;
+    transition: 0.3s;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+nav a,
+.dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+.dropdown-container {
+    display: none;
+    background-color: #7B7C93;
+    padding-left: 8px;
+    transition: 0.3s;
+}
+
+.dropdown-container a {
+    padding-left: 10px !important;
+}
+
+.nav-link:hover a:hover,
+.dropdown-btn:hover {
+    color: #f1f1f1 !important;
+}
+#user{
+        background-color: #383FDF;
+}
+
+#navi {
+    width: 100%!important;
+}
+
+main {
+    background-color: white!important;
+    font-family: 'Khand', sans-serif;
+}
+
+main #info {
+    font-family: 'Khand', sans-serif;
+    color: black;
+}
+
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+.catalogo{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 30px;
+}
+.celda{
+    text-align: center;
+}
+
+@media(max-width:1000px){
+    .catalogo{
+        grid-template-columns: auto auto;
+    }  
+}
+@media(max-width:650px){
+   .catalogo{
+        grid-template-columns: auto;
+    } 
 }
