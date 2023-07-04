@@ -1,44 +1,57 @@
-body{
-    color: red;
+body {
+    color: #FF5757;
 }
+
 nav,
 aside {
-    background-color: #12175E;
+    background-color: #D9DBFF;
 }
+
 ul {
-    padding: 0px !important;
+    padding: 0 !important;
 }
+
 li:hover {
     width: 100%;
-    background-color: #7B7C93;
+    background-color: #A1A2B3;
 }
+
 li {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
 }
+
 #title {
     font-family: 'Roboto', sans-serif;
 }
+
 #sidebar p {
-    color: white;
+    color: #F0F0F0;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 20px;
 }
+
 .navitem:active {
-    color: white;
+    color: #F0F0F0;
     transition: 0.3s;
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
 
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
 }
-th, td {
-  text-align: left;
-  padding: 8px;
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
 }
-tr:nth-child(even){background-color: #f2f2f2}
+
+tr:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
 nav a,
 .dropdown-btn {
     padding: 6px 8px 6px 16px;
@@ -56,7 +69,7 @@ nav a,
 
 .dropdown-container {
     display: none;
-    background-color: #7B7C93;
+    background-color: #A1A2B3;
     padding-left: 8px;
     transition: 0.3s;
 }
@@ -67,18 +80,19 @@ nav a,
 
 .nav-link:hover a:hover,
 .dropdown-btn:hover {
-    color: #f1f1f1 !important;
+    color: #F0F0F0 !important;
 }
-#user{
-        background-color: #383FDF;
+
+#user {
+    background-color: #5D64FF;
 }
 
 #navi {
-    width: 100%!important;
+    width: 100% !important;
 }
 
 main {
-    background-color: white!important;
+    background-color: #F0F0F0 !important;
     font-family: 'Khand', sans-serif;
 }
 
@@ -87,36 +101,41 @@ main #info {
     color: black;
 }
 
-
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
 }
 
-th, td {
-  text-align: left;
-  padding: 8px;
+th,
+td {
+    text-align: left;
+    padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
-.catalogo{
+tr:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
+.catalogo {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 30px;
 }
-.celda{
+
+.celda {
     text-align: center;
 }
 
-@media(max-width:1000px){
-    .catalogo{
+@media (max-width: 1000px) {
+    .catalogo {
         grid-template-columns: auto auto;
-    }  
+    }
 }
-@media(max-width:650px){
-   .catalogo{
+
+@media (max-width: 650px) {
+    .catalogo {
         grid-template-columns: auto;
-    } 
+    }
 }

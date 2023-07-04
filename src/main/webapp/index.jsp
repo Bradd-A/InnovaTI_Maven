@@ -8,8 +8,8 @@
         <title>Pagina de inicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link id="theme-link" rel="stylesheet" href="Css/light-theme.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-        <link rel="stylesheet" href="Css/nav.css">
         <link rel="stylesheet" href="Css/script.js">
         <link rel="icon" href="Imagenes/logo2.ico" />
         <script src="Css/script.js"></script>
@@ -101,6 +101,10 @@
                                 <li class="nav-item  " style="padding-left: 15px">
                                     <a href="Login.jsp" class="nav-link"> <i class="fas fa-user-lock"></i> Cerrar Sesión </a>
                                 </li>
+                                <button id="theme-toggle" class="btn btn-primary" style="background-color: #343a40; color: #fff; border-color: #343a40;">
+                                    Cambiar tema
+                                    <span id="theme-icon" class="fas fa-moon ml-2"></span>
+                                </button>
                             </ul>
                         </div>
                         
@@ -128,12 +132,12 @@
                     <%if (rol == 2 || rol == 3) {%>
                     <div class="row container">
                         <div class="col-md-6 text-center ">
-                            <h4>Top 5 productos mas vendidos | 2021</h4>
+                            <h4>Top 5 productos mas vendidos | 2023</h4>
                             <canvas id="myChart3"></canvas>
                                 <%@include file="Includes/TopProductos.jsp"%>
                         </div><br><br><br>
                         <div class="col-md-6 text-center ">
-                            <h4>Top 5 clientes mas frecuentes | 2021</h4>
+                            <h4>Top 5 clientes mas frecuentes | 2023</h4>
                             <canvas id="myChart4"></canvas>
                                 <%@include file="Includes/TopVentas.jsp"%>
                         </div><br>
@@ -143,7 +147,7 @@
                                 <%@include file="Includes/Datos.jsp"%>
                         </div><br><br><br>
                         <div class="col-md-6 text-center mt-4">
-                            <h4>N°Ventas por mes | 2021</h4>
+                            <h4>N°Ventas por mes | 2023</h4>
                             <canvas id="myChart2"></canvas>
                                 <%@include file="Includes/Ventas.jsp"%>        
                         </div><br>
@@ -155,5 +159,30 @@
         <div>
             <%@include file="Includes/footer.jsp"%>
         </div>
+        <script>
+  function cambiarTema() {
+    // Obtener el elemento link del archivo CSS actual
+    var link = document.getElementById("theme-link");
+    
+    // Obtener el nombre del archivo CSS actual
+    var temaActual = link.getAttribute("href");
+    
+    // Definir los nombres de los archivos CSS claro y oscuro
+    var temaClaro = "Css/light-theme.css";
+    var temaOscuro = "Css/nav.css";
+    
+    // Verificar el tema actual y cambiar al tema opuesto
+    if (temaActual === temaClaro) {
+      link.setAttribute("href", temaOscuro);
+      document.getElementById("theme-icon").classList.replace("fa-moon", "fa-sun");
+    } else {
+      link.setAttribute("href", temaClaro);
+      document.getElementById("theme-icon").classList.replace("fa-sun", "fa-moon");
+    }
+  }
+  // Escuchar el evento click del botón
+  document.getElementById("theme-toggle").addEventListener("click", cambiarTema);
+</script>
+
     </body>
 </html>
