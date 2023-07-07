@@ -47,58 +47,66 @@ public class ServletPDF extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/pdf");
-        OutputStream out = response.getOutputStream();
-        String mes = request.getParameter("mes");
-        try{
-            try{
-                Document documento = new Document();
-                PdfWriter.getInstance(documento, out);
-                
-                documento.open();
-                
-                Paragraph par1 = new Paragraph();
-                Font fonttitulo = new Font(Font.FontFamily.HELVETICA,16,Font.BOLD,BaseColor.BLUE);
-                par1.add(new Phrase("Reporte de ventas",fonttitulo));
-                par1.setAlignment(Element.ALIGN_CENTER);
-                par1.add(new Phrase(Chunk.NEWLINE));
-                par1.add(new Phrase(Chunk.NEWLINE));
-                documento.add(par1);
-                
-                Paragraph par2 = new Paragraph();
-                Font fontdescrip = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.NORMAL,BaseColor.BLACK);
-                par2.add(new Phrase("A continuacion se mostraran los productos mas vendidos durante el mes: ",fontdescrip));
-                par2.add(new Phrase(Chunk.NEWLINE));
-                par2.setAlignment(Element.ALIGN_JUSTIFIED);
-                par2.add(new Phrase(Chunk.NEWLINE));
-                par2.add(new Phrase(Chunk.NEWLINE));
-                documento.add(par2);
-                
-                
-                PdfPTable tabla = new PdfPTable(3);
-                PdfPCell celda1 = new PdfPCell(new Paragraph("Nombre del Producto",FontFactory.getFont("Arial", 12, Font.BOLD,BaseColor.RED)));
-                PdfPCell celda2 = new PdfPCell(new Paragraph("Cantidad Total Vendida",FontFactory.getFont("Arial", 12, Font.BOLD,BaseColor.RED)));
-                PdfPCell celda3 = new PdfPCell(new Paragraph("Precio Unitario",FontFactory.getFont("Arial", 12, Font.BOLD,BaseColor.RED)));
-                
-                tabla.addCell(celda1);
-                tabla.addCell(celda2);
-                tabla.addCell(celda3);
-                PreparedStatement sta = ConexionDB.getConexion().prepareStatement("SELECT producto.NOM_PROD as Producto, detalle_boleta.DET_CANTIDAD as Cantidad_Vendida, producto.PRECIO_UNIT as Precio_Unitario from detalle_boleta inner join producto on detalle_boleta.ID_PRODUCTO=producto.ID_PRODUCTO inner join boleta on detalle_boleta.ID_BOLETA=boleta.ID_BOLETA where month(boleta.FECHA_COMPRA)="+mes+" group by producto.ID_PRODUCTO order by detalle_boleta.DET_CANTIDAD desc");
-                ResultSet rs = sta.executeQuery();
-                while(rs.next()){
-                    tabla.addCell(rs.getString(1));
-                    tabla.addCell(rs.getString(2));
-                    tabla.addCell(rs.getString(3));
-                }
-                documento.add(tabla);
-                documento.close();
-                
-            }catch(Exception e){
-                System.out.println("Error: "+e);
-            }
-        }finally{
-            out.close();
+response.setHeader("Content-Disposition", "attachment; filename=reporte.pdf");
+OutputStream out = response.getOutputStream();
+String startDate = request.getParameter("startDate");
+String endDate = request.getParameter("endDate");
+try {
+    try {
+        Document documento = new Document();
+        PdfWriter.getInstance(documento, out);
+        documento.open();
+
+        Paragraph par1 = new Paragraph();
+        Font fonttitulo = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD, BaseColor.BLUE);
+        par1.add(new Phrase("Reporte de ventas", fonttitulo));
+        par1.setAlignment(Element.ALIGN_CENTER);
+        par1.add(new Phrase(Chunk.NEWLINE));
+        par1.add(new Phrase(Chunk.NEWLINE));
+        documento.add(par1);
+
+        Paragraph par2 = new Paragraph();
+        Font fontdescrip = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.BLACK);
+        par2.add(new Phrase("A continuación se mostrarán los productos más vendidos desde " + startDate + " hasta " + endDate + ":", fontdescrip));
+        par2.add(new Phrase(Chunk.NEWLINE));
+        par2.setAlignment(Element.ALIGN_JUSTIFIED);
+        par2.add(new Phrase(Chunk.NEWLINE));
+        par2.add(new Phrase(Chunk.NEWLINE));
+        documento.add(par2);
+
+        PdfPTable tabla = new PdfPTable(4); // Añadir una columna adicional
+        PdfPCell celda1 = new PdfPCell(new Paragraph("Nombre del Producto", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.RED)));
+        PdfPCell celda2 = new PdfPCell(new Paragraph("Cantidad Total Vendida", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.RED)));
+        PdfPCell celda3 = new PdfPCell(new Paragraph("Precio Unitario", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.RED)));
+        PdfPCell celda4 = new PdfPCell(new Paragraph("Valor Total", FontFactory.getFont("Arial", 12, Font.BOLD, BaseColor.RED)));
+
+        tabla.addCell(celda1);
+        tabla.addCell(celda2);
+        tabla.addCell(celda3);
+        tabla.addCell(celda4); // Agregar la nueva celda
+
+        PreparedStatement sta = ConexionDB.getConexion().prepareStatement("SELECT producto.NOM_PROD as Producto, SUM(detalle_boleta.DET_CANTIDAD) as Cantidad_Vendida, producto.PRECIO_UNIT as Precio_Unitario, SUM(detalle_boleta.DET_CANTIDAD * producto.PRECIO_UNIT) as Valor_Total FROM detalle_boleta INNER JOIN producto ON detalle_boleta.ID_PRODUCTO = producto.ID_PRODUCTO INNER JOIN boleta ON detalle_boleta.ID_BOLETA = boleta.ID_BOLETA WHERE boleta.FECHA_COMPRA BETWEEN ? AND ? GROUP BY producto.ID_PRODUCTO ORDER BY Cantidad_Vendida DESC");
+        sta.setString(1, startDate);
+        sta.setString(2, endDate);
+        ResultSet rs = sta.executeQuery();
+
+        while (rs.next()) {
+            tabla.addCell(rs.getString("Producto"));
+            tabla.addCell(rs.getString("Cantidad_Vendida"));
+            tabla.addCell(rs.getString("Precio_Unitario"));
+            tabla.addCell(rs.getString("Valor_Total")); // Agregar el valor total
         }
+
+        documento.add(tabla);
+        documento.close();
+    } catch (Exception e) {
+        System.out.println("Error: " + e);
     }
+} finally {
+    out.close();
+}
+    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

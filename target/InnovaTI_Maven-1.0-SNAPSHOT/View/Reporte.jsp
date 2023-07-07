@@ -80,7 +80,7 @@
                                             Ordenes</a></button>
                                 </li><%}%>
                                 <%if (rol == 2 || rol == 3) {%><li class="nav-item">
-                                    <button class="dropdown-btn"><a href="View/Reporte.jsp" class="nav-link"><i class="fa fa-shopping-basket"></i>
+                                    <button class="dropdown-btn"><a href="#" class="nav-link"><i class="fa fa-shopping-basket"></i>
                                             Reportes</a></button>
                                 </li><%}%>
                                 <%if (rol == 2) {%><li class="nav-item">
@@ -100,49 +100,39 @@
                         </div>
                     </nav>
                 </aside>
-                   
-    <main class="col px-0 flex-grow-1 p pb-4">       
-        <div class="container py-3">
-            <h3><i class="fas fa-chart-line"></i> Reporte de Ventas</h3>
-            <p class="text lead">Bienvenido, aqui podrá generar un reporte de los productos más vendidos por mes.</p>
-        </div>         
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-4">
-                </div>
-                <div class="col-lg-4">
-                    <form name="reporte" action="../ServletPDF" class="row g-3">
-                        <div class="col-auto">
-                        <label for="staticEmail" class="col-form-label">Seleccione mes:</label>
+
+                <main class="col px-0 flex-grow-1 p pb-4">       
+                    <div class="container py-3">
+                        <h3><i class="fas fa-chart-line"></i> Reporte de Ventas</h3>
+                        <p class="text lead">Bienvenido, aqui podrá generar un reporte de los productos más vendidos por mes.</p>
+                    </div>         
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                <form name="reporte" action="../ServletPDF" class="row g-3" target="_blank">
+                                    <div class="col-auto">
+                                        <label for="startDate" class="col-form-label">Fecha de inicio:</label>
+                                        <input type="date" name="startDate" class="form-control" required>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label for="endDate" class="col-form-label">Fecha final:</label>
+                                        <input type="date" name="endDate" class="form-control" required>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" name="btnver" class="btn btn-primary">
+                                            <i class="fa fa-download" aria-hidden="true"></i> Descargar PDF
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-4"></div>
                         </div>
-                        <div class="col-auto">
-                        <select name="mes" class="form-control">
-                            <option value="1">Enero</option>
-                            <option value="2">Febrero</option>
-                            <option value="3">Marzo</option>
-                            <option value="4">Abril</option>
-                            <option value="5">Mayo</option>
-                            <option value="6">Junio</option>
-                            <option value="7">Julio</option>
-                            <option value="8">Agosto</option>
-                            <option value="9">Setiembre</option>
-                            <option value="10">Octubre</option>
-                            <option value="11">Noviembre</option>
-                            <option value="12">Diciembre</option>
-                        </select>
-                        </div>
-                        <div class="col-auto">
-                        <input type="submit" value="Visualizar PDF" name="btnver" class="btn btn-primary"/>
-                         </div>
-                    </form>
-                </div>
-                <div class="col-lg-4"> 
-                </div>
-            </div>
-        </div> 
-                     
-    </main>
-                   
+                    </div>
+
+
+                </main>
+
             </div>
         </div>
         <div>

@@ -137,7 +137,7 @@
                                     <div class="col-md-6">   
                                     <select class="form-select" name="txtTipo" id="floatingSelect" aria-label="Floating label select example" onchange="mostrarCamposAdicionales()">
                                         <option selected>Metodo de pago</option>
-                                        <option value="Efectivo">Efectivo</option>
+                                        <option value="Efectivo">Contra entrega</option>
                                         <option value="Tarjeta">Tarjeta</option>
                                     </select>
 
