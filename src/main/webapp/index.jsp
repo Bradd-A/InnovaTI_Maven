@@ -8,7 +8,7 @@
         <title>Pagina de inicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link id="theme-link" rel="stylesheet" href="Css/light-theme.css">
+        <link id="theme-link" rel="stylesheet" href="Css/nav.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
         <link rel="stylesheet" href="Css/script.js">
         <link rel="icon" href="Imagenes/logo2.ico" />
@@ -101,10 +101,11 @@
                                 <li class="nav-item  " style="padding-left: 15px">
                                     <a href="Login.jsp" class="nav-link"> <i class="fas fa-user-lock"></i> Cerrar Sesión </a>
                                 </li>
-                                <button id="theme-toggle" class="btn btn-primary" style="background-color: #343a40; color: #fff; border-color: #343a40;">
+                                <!-- <button id="theme-toggle" class="btn btn-primary" style="background-color: #343a40; color: #fff; border-color: #343a40;">
                                     Cambiar tema
                                     <span id="theme-icon" class="fas fa-moon ml-2"></span>
                                 </button>
+                                -->
                             </ul>
                         </div>
                         

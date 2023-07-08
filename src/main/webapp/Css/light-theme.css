@@ -4,7 +4,7 @@ body {
 
 nav,
 aside {
-    background-color: #D9DBFF;
+    background-color: #F2E527;
 }
 
 ul {
@@ -26,13 +26,13 @@ li {
 }
 
 #sidebar p {
-    color: #F0F0F0;
+    color: #000000;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 20px;
 }
 
 .navitem:active {
-    color: #F0F0F0;
+    color: #000000;
     transition: 0.3s;
 }
 
