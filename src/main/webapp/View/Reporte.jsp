@@ -111,32 +111,38 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-4">
                                 <form name="reporte" action="../ServletPDF" class="row g-3" target="_blank">
-                                    <div class="col-auto">
-                                        <label for="startDate" class="col-form-label">Fecha de inicio:</label>
-                                        <input type="date" name="startDate" class="form-control" required>
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <label for="startDate" class="col-form-label">Fecha de inicio:</label>
+                                            <input type="date" name="startDate" class="form-control" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="endDate" class="col-form-label">Fecha final:</label>
+                                            <input type="date" name="endDate" class="form-control" required>
+                                        </div>
                                     </div>
-                                    <div class="col-auto">
-                                        <label for="endDate" class="col-form-label">Fecha final:</label>
-                                        <input type="date" name="endDate" class="form-control" required>
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="submit" name="btnver" class="btn btn-primary">
-                                            <i class="fa fa-download" aria-hidden="true"></i> Descargar PDF
-                                        </button>
-                                    </div>
+                                    <div class="row g-3 justify-content-center">
+                                        <div class="col-auto">
+                                            <button type="submit" name="btnver" class="btn btn-primary">
+                                                <i class="fa fa-download" aria-hidden="true"></i> Descargar PDF
+                                            </button>
+                                        </div>
                                 </form>
                             </div>
-                            <div class="col-lg-4"></div>
                         </div>
+                        <div class="col-lg-4"></div>
                     </div>
-
-
-                </main>
-
             </div>
-        </div>
-        <div>
-            <%@include file="../Includes/footer.jsp"%>
-        </div> 
-    </body>
+
+
+
+
+        </main>
+
+    </div>
+</div>
+<div>
+    <%@include file="../Includes/footer.jsp"%>
+</div> 
+</body>
 </html>
