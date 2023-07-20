@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Bradd\Documents\GitHub\InnovaTI_Maven\src\main\java\Servlets\ServletEmpleado.java
 C:\Users\Bradd\Documents\GitHub\InnovaTI_Maven\src\main\java\proyectoj\innovati_maven\resources\JavaEE8Resource.java
 C:\Users\Bradd\Documents\GitHub\InnovaTI_Maven\src\main\java\Servlets\ServletProveedor.java
@@ -21,3 +22,28 @@ C:\Users\Bradd\Documents\GitHub\InnovaTI_Maven\src\main\java\Beans\BoletaBeans.j
 C:\Users\Bradd\Documents\GitHub\InnovaTI_Maven\src\main\java\Utils\ConexionDB.java
 C:\Users\Bradd\Documents\GitHub\InnovaTI_Maven\src\main\java\Beans\CarritoBeans.java
 C:\Users\Bradd\Documents\GitHub\InnovaTI_Maven\src\main\java\Servlets\ServletCliente.java
+=======
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletCategoria.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\EmpleadosBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletEmpleado.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletProducto.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletCliente.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletPaypal.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\proyectoj\innovati_maven\JAXRSConfiguration.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\ClientesBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\BoletaBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\CategoriaBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\CarritoBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\ConsultaBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\ProveedorBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletLogin.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletProveedor.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletConsulta.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\ProductosBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Beans\DetalleBeans.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\proyectoj\innovati_maven\resources\JavaEE8Resource.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletPDF.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletOrden.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Servlets\ServletBoleta.java
+D:\CARPETAGIT\Android\ruedoapp\InnovaTI_Maven\src\main\java\Utils\ConexionDB.java
+>>>>>>> 145783b0fa48bbf725b0fe697301891e12e6a24c
