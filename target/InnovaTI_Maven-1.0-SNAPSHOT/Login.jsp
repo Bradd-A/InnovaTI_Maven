@@ -46,8 +46,8 @@
                             <div class="d-grid pt-3 ">
                                 <input type="submit" style=" background-color: #32E0C4!important;" class="btn btn-block my-2 boton" id="boton" name="btn.login" value="Iniciar Sesión">
                             </div>
-                            <div class="form-floating mt-2">
-                                <a href="Registrarse.jsp" class="text-end">Aun no tienes una cuenta? Registrate</a>
+                            <div class="form-floating mt-2" style="text-align: center;">
+                                <a href="Registrarse.jsp" class="text-justify">Aun no tienes una cuenta? Registrate</a>
                             </div>
                         </form>
                         <%

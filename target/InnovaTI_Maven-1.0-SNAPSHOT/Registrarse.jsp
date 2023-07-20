@@ -30,23 +30,26 @@
                     <h2 class="fw-bold text-center py-4"> Nuevo Usuario </h2>
                         <form action="ServletCliente" method="post" class="mb-5">
                             <div class="form-floating mb-2 mt-2">
-                                <input type="text" name="txtNombre" class="form-control" id="floatingInput" placeholder="Nombre">
+                                <input type="text" name="txtNombre" class="form-control" id="floatingInput" placeholder="Nombre" required>
                                 <label for="floatingInput">Nombre</label>
                             </div>
                             <div class="form-floating mb-2 mt-2">
-                                <input type="text" name="txtApel" class="form-control" id="floatingInput" placeholder="Apellidos">
+                                <input type="text" name="txtApel" class="form-control" id="floatingInput" placeholder="Apellidos" required>
                                 <label for="floatingInput">Apellido</label>
                             </div>
                             <div class="form-floating mb-2 mt-2">
-                                <input type="email" name="txtCorreo" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <input type="email" name="txtCorreo" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                                 <label for="floatingInput">Correo Electrónico</label>
                             </div>
                             <div class="form-floating mt-2">
-                                <input type="password" name="txtPass" class="form-control" id="floatingPassword" placeholder="Password">
+                                <input type="password" name="txtPass" class="form-control" id="floatingPassword" placeholder="Password" required>
                                 <label for="floatingPassword">Contraseña</label><br>
                             </div>
-                            <input type="hidden" name="op" value="insertar">
-                            <input type="Submit" name="btn" class=" btn btn-dark" value="Agregar">
+                            <input type="hidden" name="op" value="insertar">               
+                            <div class="form-floating mt-2 d-flex align-items-center justify-content-center">
+                                <input type="Submit" name="btn" class="btn btn-dark" style="margin-left: 10px" value="Registrarse">
+                                <input type="Submit" name="btn" class="btn btn-dark" style="margin-left: 10px" value="Regresar">
+                            </div>
                         </form>
                         <%
                             if (request.getAttribute("Error") != null) {
