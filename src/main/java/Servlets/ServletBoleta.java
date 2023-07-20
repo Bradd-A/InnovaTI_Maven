@@ -64,7 +64,7 @@ public class ServletBoleta extends HttpServlet {
                 request.setAttribute("lista", lista);
                 request.getRequestDispatcher("View/MostrarBoletas.jsp").forward(request, response);
             } catch (Exception e) {
-                System.out.println("Error: " + e);
+                System.out.println("Error: a" + e);
             }
         }else if (op.equals("listar2")) {
             try {
@@ -86,7 +86,7 @@ public class ServletBoleta extends HttpServlet {
                 car = (ArrayList<CarritoBeans>) sesionOk.getAttribute("carrito");
                 car.clear();
             } catch (Exception e) {
-                System.out.println("Error: " + e);
+                System.out.println("Error:b " + e);
             }
         }else if (op.equals("listar3")) {
             
@@ -115,7 +115,7 @@ public class ServletBoleta extends HttpServlet {
                 car = (ArrayList<CarritoBeans>) sesionOk.getAttribute("carrito");
                 car.clear();
             } catch (Exception e) {
-                System.out.println("Error: " + e);
+                System.out.println("Error:c " + e);
             }
         } else if (op.equals("visualizarB")) { 
             try {
@@ -137,7 +137,7 @@ public class ServletBoleta extends HttpServlet {
                 car = (ArrayList<CarritoBeans>) sesionOk.getAttribute("carrito");
                 car.clear();
             } catch (Exception e) {
-                System.out.println("Error: " + e);
+                System.out.println("Error: d" + e);
             }
         }
         else if (op.equals("eliminar")) {
@@ -151,7 +151,7 @@ public class ServletBoleta extends HttpServlet {
                 sta2.executeUpdate();
                 request.getRequestDispatcher("ServletBoleta?op=listar").forward(request, response);           
             } catch (Exception e) {
-                System.out.println("Error: " + e);
+                System.out.println("Error: e" + e);
             }
         } else if (op.equals("insertar")) {
             try {
@@ -199,7 +199,7 @@ public class ServletBoleta extends HttpServlet {
                     request.getRequestDispatcher("ServletBoleta?op=listar2").forward(request, response);
                 
             } catch (Exception e) {
-                System.out.println("Error: " + e);
+                System.out.println("Error: f" + e);
             }
         }
     }
