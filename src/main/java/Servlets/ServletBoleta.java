@@ -117,7 +117,30 @@ public class ServletBoleta extends HttpServlet {
             } catch (Exception e) {
                 System.out.println("Error: " + e);
             }
-        }else if (op.equals("eliminar")) {
+        } else if (op.equals("visualizarB")) { 
+            try {
+                String codBB =request.getParameter("codBB");
+                System.out.println("paso1: ");
+                PreparedStatement sta = ConexionDB.getConexion().prepareStatement("select * from boleta where ID_BOLETA='"+codBB+"'");
+                ResultSet rs = sta.executeQuery();
+                System.out.println("paso2: ");
+                ArrayList<BoletaBeans> lista = new ArrayList<BoletaBeans>();
+                while (rs.next()) {
+                    BoletaBeans bb = new BoletaBeans(rs.getInt(1), rs.getString(2),
+                            rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+                    lista.add(bb);
+                }
+                request.setAttribute("lista3", lista);
+                request.getRequestDispatcher("View/Boleta.jsp").forward(request, response);
+                HttpSession sesionOk = request.getSession();
+                ArrayList<CarritoBeans> car;
+                car = (ArrayList<CarritoBeans>) sesionOk.getAttribute("carrito");
+                car.clear();
+            } catch (Exception e) {
+                System.out.println("Error: " + e);
+            }
+        }
+        else if (op.equals("eliminar")) {
             try {
                 String cod = request.getParameter("cod");
                 PreparedStatement sta = ConexionDB.getConexion().prepareStatement("delete from detalle_boleta where ID_BOLETA=?");
