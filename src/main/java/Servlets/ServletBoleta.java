@@ -11,6 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import Beans.BoletaBeans;
 import Beans.CarritoBeans;
+import Beans.DetalleBoletaBeans;
 import Utils.ConexionDB;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -117,29 +118,61 @@ public class ServletBoleta extends HttpServlet {
             } catch (Exception e) {
                 System.out.println("Error:c " + e);
             }
-        } else if (op.equals("visualizarB")) { 
-            try {
-                String codBB =request.getParameter("codBB");
-                System.out.println("paso1: ");
-                PreparedStatement sta = ConexionDB.getConexion().prepareStatement("select * from boleta where ID_BOLETA='"+codBB+"'");
-                ResultSet rs = sta.executeQuery();
-                System.out.println("paso2: ");
-                ArrayList<BoletaBeans> lista = new ArrayList<BoletaBeans>();
-                while (rs.next()) {
-                    BoletaBeans bb = new BoletaBeans(rs.getInt(1), rs.getString(2),
-                            rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
-                    lista.add(bb);
+        } else if (op.equals("visualizarB")) {
+    try {
+        String codBB = request.getParameter("codBB");
+        System.out.println("paso1: ");
+        PreparedStatement sta = ConexionDB.getConexion().prepareStatement("select * from boleta where ID_BOLETA='" + codBB + "'");
+        ResultSet rs = sta.executeQuery();
+        System.out.println("paso2: ");
+        ArrayList<BoletaBeans> boleta = new ArrayList<BoletaBeans>();
+        while (rs.next()) {
+            BoletaBeans bb = new BoletaBeans(rs.getInt(1), rs.getString(2),
+                    rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+            boleta.add(bb);
+        }
+
+        // Obtener información de los detalles de la boleta y sus productos asociados
+        PreparedStatement staDetalles = ConexionDB.getConexion().prepareStatement(
+                "SELECT p.NOM_PROD, p.PRECIO_UNIT, db.DET_CANTIDAD, db.DET_TOTAL FROM detalle_boleta db "
+                + "JOIN producto p ON db.ID_PRODUCTO = p.ID_PRODUCTO WHERE db.ID_BOLETA = ?");
+        staDetalles.setString(1, codBB);
+        ResultSet rsDetalles = staDetalles.executeQuery();
+
+        ArrayList<DetalleBoletaBeans> detalles = new ArrayList<DetalleBoletaBeans>();
+        while (rsDetalles.next()) {
+            String nombreProducto = rsDetalles.getString(1);
+            double precioUnitario = rsDetalles.getDouble(2);
+            int cantidad = rsDetalles.getInt(3);
+            double totalDetalle = rsDetalles.getDouble(4);
+
+            // Buscar si el producto ya está en la lista y agrupar si es necesario
+            boolean productoEncontrado = false;
+            for (DetalleBoletaBeans detalle : detalles) {
+                if (detalle.getNombreProducto().equals(nombreProducto)) {
+                    // El producto ya está en la lista, agrupar
+                    detalle.setCantidad(detalle.getCantidad() + cantidad);
+                    detalle.setTotal(detalle.getTotal() + totalDetalle);
+                    productoEncontrado = true;
+                    break;
                 }
-                request.setAttribute("lista3", lista);
-                request.getRequestDispatcher("View/Boleta.jsp").forward(request, response);
-                HttpSession sesionOk = request.getSession();
-                ArrayList<CarritoBeans> car;
-                car = (ArrayList<CarritoBeans>) sesionOk.getAttribute("carrito");
-                car.clear();
-            } catch (Exception e) {
-                System.out.println("Error: d" + e);
+            }
+
+            // Si el producto no se encontró, agregarlo a la lista como un nuevo detalle
+            if (!productoEncontrado) {
+                DetalleBoletaBeans detalle = new DetalleBoletaBeans(nombreProducto, precioUnitario, cantidad, totalDetalle);
+                detalles.add(detalle);
             }
         }
+
+        request.setAttribute("boleta", boleta);
+        request.setAttribute("detalles", detalles);
+        request.getRequestDispatcher("View/Boleta_1.jsp").forward(request, response);
+    } catch (Exception e) {
+        System.out.println("Error: " + e);
+    }
+}
+
         else if (op.equals("eliminar")) {
             try {
                 String cod = request.getParameter("cod");
