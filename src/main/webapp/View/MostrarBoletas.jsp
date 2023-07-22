@@ -10,6 +10,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="Css/nav.css">
         <link rel="icon" href="Imagenes/logo2.ico" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+
+        <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+
     </head>
     <body>
         <header>
@@ -110,7 +115,7 @@
                     <div class="column w-100  bg-light p-4" id="info">
                         <h2> <i class="fa fa-truck"></i> BOLETAS DISPONIBLES</h2>
                         <div class="row pt-3" style="overflow-x:auto;">
-                            <table class="table table-striped table-sm" width="100%">
+                            <table id="mostrarBoletasTable" class="table table-striped table-sm" width="100%">
                                 <thead>
                                     <tr class="" bgcolor="#D5DBDB">
                                         <th scope="col">Codigo</th>
@@ -157,4 +162,13 @@
             <%@include file="../Includes/footer.jsp"%>
         </div> 
     </body>
+    <script>
+    $(document).ready(function () {
+        $('#mostrarBoletasTable').DataTable({
+            paging: true,
+            lengthMenu: [10, 25, 50, 100], // Opciones de número de filas por página
+            pageLength: 10 // Número de filas por página por defecto
+        });
+    });
+</script>
 </html>
