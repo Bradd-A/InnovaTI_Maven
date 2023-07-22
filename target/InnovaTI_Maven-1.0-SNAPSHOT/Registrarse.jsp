@@ -48,7 +48,7 @@
                             <input type="hidden" name="op" value="insertar">               
                             <div class="form-floating mt-2 d-flex align-items-center justify-content-center">
                                 <input type="Submit" name="btn" class="btn btn-dark" style="margin-left: 10px" value="Registrarse">
-                                <input type="Submit" name="btn" class="btn btn-dark" style="margin-left: 10px" value="Regresar">
+                                <input type="Button" class="btn btn-dark" style="margin-left: 10px" value="Regresar" onclick="redirigirALogin()">
                             </div>
                         </form>
                         <%
@@ -65,4 +65,9 @@
             </div>
         </div>
     </body>
+    <script>
+    function redirigirALogin() {
+        window.location.href = "Login.jsp"; // Redirige a Login.jsp al hacer clic en el botón "Regresar"
+    }
+</script>
 </html>
